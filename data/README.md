@@ -1,1 +1,1 @@
-This is the directory where data should be stored in order to use main.py for executing continual learning models. If you have not already, populate this folder using the get_data.py in the root directory.
+This is the directory where data should be stored in order to use main.py for executing continual learning models. If you have not already, populate this folder using the get_data.py file in the root directory.
