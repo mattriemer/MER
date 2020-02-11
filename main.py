@@ -240,10 +240,12 @@ if __name__ == "__main__":
     np.random.seed(args.seed)
     random.seed(args.seed)
     if args.cuda:
+        print("Found GPU:", torch.cuda.get_device_name(0))
         torch.cuda.manual_seed_all(args.seed)
 
     # load data
     x_tr, x_te, n_inputs, n_outputs, n_tasks = load_datasets(args)
+    n_outputs = n_outputs.item()  # outputs should not be a tensor, otherwise "TypeError: expected Float (got Long)"
 
     # set up continuum
     continuum = Continuum(x_tr, args)
