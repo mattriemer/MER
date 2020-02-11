@@ -106,19 +106,20 @@ def eval_tasks(model, tasks, args):
         
         eval_bs = x.size(0)
 
-        for b_from in range(0, x.size(0), eval_bs):
-            b_to = min(b_from + eval_bs, x.size(0) - 1)
-            if b_from == b_to:
-                xb = x[b_from].view(1, -1)
-                yb = torch.LongTensor([y[b_to]]).view(1, -1)
-            else:
-                xb = x[b_from:b_to]
-                yb = y[b_from:b_to]
-            if args.cuda:
-                xb = xb.cuda()
-            xb = Variable(xb, volatile=True)
-            _, pb = torch.max(model(xb, t).data.cpu(), 1, keepdim=False)
-            rt += (pb == yb).float().sum()
+        with torch.no_grad():  # torch 0.4+
+            for b_from in range(0, x.size(0), eval_bs):
+                b_to = min(b_from + eval_bs, x.size(0) - 1)
+                if b_from == b_to:
+                    xb = x[b_from].view(1, -1)
+                    yb = torch.LongTensor([y[b_to]]).view(1, -1)
+                else:
+                    xb = x[b_from:b_to]
+                    yb = y[b_from:b_to]
+                if args.cuda:
+                    xb = xb.cuda()
+                # xb = Variable(xb, volatile=True)  # torch 0.4+
+                _, pb = torch.max(model(xb, t).data.cpu(), 1, keepdim=False)
+                rt += (pb == yb).float().sum()
 
         result.append(rt / x.size(0))
 
