@@ -28,7 +28,7 @@ def confusion_matrix(result_t, result_a, fname=None):
 
     baseline = result_a[0]
     changes = torch.LongTensor(changes + [result_a.size(0)]) - 1
-    result = result_a.index(torch.LongTensor(changes))
+    result = result_a.index_select(0, torch.LongTensor(changes))  # .index (torch<0.3.1) | .index_select (torch>0.4)
 
     # acc[t] equals result[t,t]
     acc = result.diag()
