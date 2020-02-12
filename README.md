@@ -22,7 +22,7 @@ The code in this repository should work on the variants of MNIST used in the exp
 
 The original MNIST database is available at http://yann.lecun.com/exdb/mnist/ and interface for generating your own MNIST variants is provided as part of the GEM project https://github.com/facebookresearch/GradientEpisodicMemory/tree/master/data. To maximize reproducibility, we have provided an interface for directly downloading the dataset versions used in our experiments.
 
-## Basic Setup
+## Basic Setup (Python 3.5 & torch 0.3.1)
 
 As a first step to get up and running, clone this git repository and navigate into the root directory of your local version of the repository. To get started, please install the requirements inside your environment.
 
@@ -43,6 +43,35 @@ or
 Within the `mer` environment, install PyTorch and Cython using conda as follows:
 
 ```conda install pytorch=0.3.1 -c pytorch```
+
+```conda install cython```
+
+and then install the rest of the requirements using the following command:
+
+```pip install --user -r requirements.txt```
+
+
+## Basic Setup (Python 3.6+ & torch 1.4+)
+
+As a first step to get up and running, clone this git repository and navigate into the root directory of your local version of the repository. To get started, please install the requirements inside your environment.
+
+If you don't have an environment, we recommend that you create one (using [conda](http://anaconda.org)). The following instructions will guide you:
+
+Install `conda` and type
+
+```conda create --name mer python```
+
+This will create a conda environment (an isolated workplace) in which we can install the right versions of the software. Then, activate the environment:
+
+```source activate mer```
+
+or
+
+```conda activate mer```
+
+Within the `mer` environment, install PyTorch and Cython using conda as follows:
+
+```conda install torch```
 
 ```conda install cython```
 
