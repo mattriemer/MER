@@ -46,6 +46,9 @@ Within the `mer` environment, install PyTorch and Cython using conda as follows:
 
 ```conda install cython```
 
+_For python 3.6+, to install quadprog, first do:_
+```sudo apt install gcc build-essential```
+
 and then install the rest of the requirements using the following command:
 
 ```pip install --user -r requirements.txt```
