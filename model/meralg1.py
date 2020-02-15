@@ -61,7 +61,7 @@ class Net(nn.Module):
 
     def getBatch(self,x,y,t):
         xi = Variable(torch.from_numpy(np.array(x))).float().view(1,-1)
-        yi = Variable(torch.from_numpy(np.array(y))).long()
+        yi = Variable(torch.from_numpy(np.array(y))).long().view(1)
         if self.cuda:
             xi = xi.cuda()
             yi = yi.cuda()
@@ -76,7 +76,7 @@ class Net(nn.Module):
                 k = order[j]
                 x,y,t = self.M[k]
                 xi = Variable(torch.from_numpy(np.array(x))).float().view(1,-1)
-                yi = Variable(torch.from_numpy(np.array(y))).long()
+                yi = Variable(torch.from_numpy(np.array(y))).long().view(1)
                 # handle gpus if specified
                 if self.cuda:
                     xi = xi.cuda()
